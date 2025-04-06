@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Encode và Decode Text</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 30px; }
+        .container { max-width: 600px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mb-4">🔒 Encode và Decode Text</h2>
+
+    <!-- Form cho Encode -->
+    <form action="/encode" method="post">
+        <div class="mb-3">
+            <label for="text" class="form-label">Nhập văn bản</label>
+            <input type="text" class="form-control" id="text" name="text" required>
+        </div>
+        <div class="mb-3">
+            <label for="encoding_type" class="form-label">Chọn kiểu mã hóa</label>
+            <select class="form-select" id="encoding_type" name="encoding_type" required>
+                <option value="base64">Base64</option>
+                <option value="url">URL Encode</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Mã hóa</button>
+    </form>
+
+    <hr>
+
+    <!-- Form cho Decode -->
+    <form action="/decode" method="post">
+        <div class="mb-3">
+            <label for="text" class="form-label">Nhập văn bản mã hóa</label>
+            <input type="text" class="form-control" id="text" name="text" required>
+        </div>
+        <div class="mb-3">
+            <label for="encoding_type" class="form-label">Chọn kiểu giải mã</label>
+            <select class="form-select" id="encoding_type" name="encoding_type" required>
+                <option value="base64">Base64</option>
+                <option value="url">URL Decode</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Giải mã</button>
+    </form>
+
+    {% if encoded %}
+        <hr>
+        <h3>Kết quả mã hóa ({{ encoding_type }}):</h3>
+        <p><strong>{{ original }}</strong> -> <strong>{{ encoded }}</strong></p>
+    {% endif %}
+
+    {% if decoded %}
+        <hr>
+        <h3>Kết quả giải mã ({{ encoding_type }}):</h3>
+        <p><strong>{{ original }}</strong> -> <strong>{{ decoded }}</strong></p>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
